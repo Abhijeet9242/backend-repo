@@ -1,0 +1,38 @@
+######### database Threatre
+
+
+1.movie which are equal to movie_name
+-->db.movies.find({"movie_name":{$eq:"movie_name"}},{"movie_name":1,"production_year":1})
+
+2.movies which are not equal to movie_name
+-->db.movies.find({"movie_name":{$ne:"movie_name"}},{"movie_name":1,"production_year":1}).pretty()
+
+3.all movies greater than and greater than equal to a budget
+-->db.movies.find({"budget":{$gte:15000}},{"movie_name":1,"production_year":1}).pretty()
+
+4.all movies less than and less than equal to a budget
+-->db.movies.find({"budget":{$lte:15000}},{"movie_name":1,"production_year":1}).pretty()
+
+5.all movies that are produced after 2000 with budget greater than 10000
+-->db.movies.find({$and:[{production_year: {$gte:2000}},{budget: {$gt:10000}}]}).pretty()
+
+6.all movies that are produced after 2000 or budget greater than 10000
+-->db.movies.find({$or:[{production_year: {$gt:2000}},{budget: {$gt:10000}}]}, {movie_name:1,production_year:1}).pretty()
+
+7. all movies that are neither produced after 2000 nor with budget greater than 10000.
+-->db.movies.find({$nor:[{"production_year":{$gt:2000}},{"budget":{$gt:10000}}]},{movie_name:1,production_year:1}).pretty()
+
+8.find all movies that are not produced in 2000 or they do not have budget of 10000
+-->db.movies.find({$or:[{"production_year":{$nin:[2000]}},{"budget":{$nin:[10000]}}]},{"movie_name":1,"production_year":1}).pretty()
+
+9.find all movies that were produced from 2000 to 2010.
+-->db.movies.find({"production_year":{$in:[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010]}},{"movie_name":1,"production_year":1}).pretty()
+
+10.Sort all movies descending based on the production year and if the year is same then alphabetically for their movie_names
+-->db.movies.find().sort({"production_year":-1},{"movie_name":-1}).pretty()
+
+11.in query 10 skip the first 10 entries and fetch the next 5
+--> db.movies.find({},{movie_name:-1,production_year:-1}).skip(10).limit(5).pretty()
+
+12.remove movie genre from the first 10 movies in query 10.
+--> db.movies.find({},{movie_genre:0}).limit(10).pretty()
