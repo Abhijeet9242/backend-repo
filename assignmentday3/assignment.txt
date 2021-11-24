@@ -1,0 +1,70 @@
+
+##########For this assignment you need to create a database called assignment and collection called users that has following fields :-
+
+first_name
+
+last_name
+
+email
+
+gender
+
+ip_address
+
+age
+
+Insert 10 documents in this users collection using both insert and insertMany
+
+Select all the documents in the users collection using find and also a single document using findOne
+
+Update at least 3 documents using update and updateMany
+
+Delete documents using remove, remove that will remove just 1 document, deleteOne, deleteMany
+
+Then delete the database
+
+
+----------------------------------------------------------------------COMMAND THAT USED FOR THIS ASSIGNMENT------------------------------------------------------
+
+
+1.create database
+---->use assignment
+
+2.inserting document to collection using insertone and insertmany
+
+--->db.users.insert( {first_name:"abhijeet" ,last_name:"kumar",email:"kr0123@gmail.com",gender:"male",ip_address:"1.1.2.2",age:"21"})
+---> db.users.insertMany([ {first_name:"simran",last_name:"gupta",email:"etefd3shs3@gmail.com",gender:"female",ip_address:"2.2.13.12",age:"26"} , {first_name:"amar",last_name:"singh",email:"etefdbccvcvcc3@gmail.com",gender:"male",ip_address:"2.2.3.20",age:"21"}, {first_name:"ayushi",last_name:"singh",email:"dwdetefd3@gmail.com",gender:"female",ip_address:"2.2.23.2",age:"23"}, {first_name:"ajeet",last_name:"sharma",email:"etefd443@gmail.com",gender:"male",ip_address:"12.2.3.2",age:"22"} , {first_name:"tanya",last_name:"singh",email:"etefre3rd3@gmail.com",gender:"female",ip_address:"2.12.3.2",age:"20"} ] )
+
+3.finding all collection document
+
+-->db.users.find().pretty()
+
+4.finding single document in collection by id
+
+--> db.users.findOne({ "_id" : ObjectId("619dd4d3e4b29dc7bf2be905")})
+
+5.update single document by id
+
+--->  db.users.update( { "_id" : ObjectId("619de05ee4b29dc7bf2be90f")} , {$set: {state: "bihar"}} )
+
+6.update many document which fulfill the given condition
+
+--->db.users.updateMany( {gender:"male"} , {$set: {religion:"hindu"}})
+
+7.remove single document by id
+
+-->db.users.remove({ "_id" : ObjectId("619de05ee4b29dc7bf2be90e")})
+
+8.deletOne 
+
+---> db.users.deleteOne( {age:"20"})
+
+9.deleteMany
+
+--->db.users.deleteMany( {religion:"hindu"})
+
+10. detete database
+
+first go inside databse using use then put this command
+
+--->db.dropDatabase()
